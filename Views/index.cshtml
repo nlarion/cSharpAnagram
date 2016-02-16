@@ -5,6 +5,23 @@
     <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css'>
   </head>
   <body>
-    <h1>THIS IS A TEMPLATE</h1>
+    <h1>Enter a Word to check if it's an anagram.</h1>
+    <form action="/" method="post">
+      <input type="text" name="word" value=""> Enter a Word
+      <input type="text" name="listWords" value=""> Enter a list of Words
+      <button type="submit" name="button">PRESS THIS</button>
+    </form>
+    <h2>A list of words maybe:</h2>
+    <ul>
+      @{
+        if(Model!=null)
+        {
+          foreach(var word in Model)
+          {
+            <li>@word</li>
+          }
+        }
+      }
+    </ul>
   </body>
 </html>

@@ -2,7 +2,7 @@ using System;
 using System.Linq;
 using System.Collections.Generic;
 
-namespace Anagrams.Objects
+namespace Anagrams
 
 {
 
@@ -21,24 +21,36 @@ namespace Anagrams.Objects
      _arrayWord = _inputWord.ToCharArray();
     }
 
-    public bool IsAnagram(string words)
-    {
-      char myChar = (char) ' ';
-      string[] allWords = words.Split(myChar);
+
+    public List<string> printAnagram(string words){
+      List<string> returnList = new List<string> {};
+      string[] allWords = words.Split(' ');
       foreach (string word in allWords)
       {
-        if(_inputWord.Length == word.Length)
-        {
-          string newWord = word.ToLower();
-          char[] wordsArray = newWord.ToCharArray();
-          Array.Sort(wordsArray);
-          Array.Sort(_arrayWord);
-          return  _arrayWord.SequenceEqual(wordsArray);
+        if (this.IsAnagram(word)){
+          returnList.Add(word);
         }
       }
-      return false;
+      return returnList;
     }
 
+
+
+    public bool IsAnagram(string word)
+    {
+      if(_inputWord.Length == word.Length)
+      {
+        word = word.ToLower();
+        char[] wordArray = word.ToCharArray();
+        Array.Sort(wordArray);
+        Array.Sort(_arrayWord);
+        return  _arrayWord.SequenceEqual(wordArray);
+      }
+      else
+      {
+        return false;
+      }
+    }
 //
 //
 // //getters and setters for properties//

@@ -1,5 +1,8 @@
 using Xunit;
-namespace  Anagrams.Objects
+using System;
+using System.Linq;
+using System.Collections.Generic;
+namespace  Anagrams
 {
   public class AnagramTest
   {
@@ -17,9 +20,9 @@ namespace  Anagrams.Objects
       public void SentenceMatcher_ForDogandGod_true()
       {
         Anagram newAnagram = new Anagram("Dog");
-        bool matchWord = newAnagram.IsAnagram("God is awesome!");
-        Assert.Equal(true, matchWord);
+        List<string> returnList = newAnagram.printAnagram("God is awesome, dog");
+        List<string> testList = new List<string> {"God", "dog"};
+        Assert.Equal(testList, returnList);
       }
-
   }
 }

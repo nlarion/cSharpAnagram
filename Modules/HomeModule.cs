@@ -1,19 +1,23 @@
-// using Nancy;
-// using TEMPLATE.Objects;
-// using System.Collections.Generic;
-//
-// namespace Project
-// {
-//   public class HomeModule : NancyModule
-//   {
-//     public HomeModule()
-//     {
-//       Get["/"] = _ => View ["index.cshtml"];
-//       //loads index view at root//
-//
-//       Get["/other_page"] = _ => {
-//       return View["template.cshtml"];
-//       };
-//     }
-//   }
-// }
+using Nancy;
+using System.Collections.Generic;
+using Xunit;
+using System;
+using System.Linq;
+
+namespace Anagrams
+{
+  public class HomeModule : NancyModule
+  {
+    public HomeModule()
+    {
+      Get["/"] = _ => View ["index.cshtml"];
+
+
+      Post["/"] = _ => {
+      Anagram newAnagram = new Anagram(Request.Form["word"]);
+      List<string> returnList = newAnagram.printAnagram(Request.Form["listWords"]);
+      return View["index.cshtml", returnList];
+      };
+    }
+  }
+}
